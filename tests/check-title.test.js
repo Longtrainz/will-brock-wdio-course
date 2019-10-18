@@ -1,10 +1,9 @@
-// const assert = require('assert');
 import assert from 'assert';
 
 describe('webdriver.io page', () => {
     it('should have the right title', async () => {
-        await browser.url('https://webdriver.io')
-        const title = await browser.getTitle()
-        assert.strictEqual(title, 'WebdriverIO · Next-gen WebDriver test framework for Node.js')
-    })
-})
+        await browser.url('https://webdriver.io');
+        const title = await browser.getTitle();
+        assert.strictEqual(title, 'WebdriverIO · Next-gen WebDriver test framework for Node.js');
+    });
+});
