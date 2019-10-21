@@ -92,7 +92,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://localhost',
+    baseUrl: 'http://the-internet.herokuapp.com/',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -165,6 +165,22 @@ exports.config = {
      */
     before: function (capabilities, specs) {
         require('@babel/register');
+
+        browser.addCommand('foobar', async function(foo) {
+            return {
+                title : await this.getTitle(),
+                somethingCustom : foo
+            };
+        });
+
+        browser.addCommand('makeRequest', function(data) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(`From our api call: ${data}`);
+                }, 3000);
+            });
+        });
+    
     },
     /**
      * Runs before a WebdriverIO command gets executed.
